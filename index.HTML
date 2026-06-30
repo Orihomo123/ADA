@@ -1,241 +1,187 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הרבץ לנתאי</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a2e;
-            font-family: 'Press Start 2P', 'Courier New', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #fff;
-            overflow: hidden;
-            user-select: none;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        #game-container {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            background-color: #162447;
-            border: 4px solid #e94560;
-            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
-            overflow: hidden;
-        }
+<title>הרבץ לנתאי</title>
 
-        /* Screens styling */
-        .screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            background-color: rgba(22, 36, 71, 0.95);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-        .hidden {
-            display: none !important;
-        }
+<style>
 
-        /* Menu Title with Pixel Font */
-        h1 {
-            font-size: 3rem;
-            color: #e94560;
-            text-shadow: 4px 4px #0f3460;
-            margin-bottom: 50px;
-            text-align: center;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Retro Button Styling */
-        .btn {
-            font-family: 'Press Start 2P', monospace;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            color: #fff;
-            background-color: #e94560;
-            border: 4px solid #fff;
-            cursor: pointer;
-            box-shadow: 0 6px #0f3460;
-            transition: all 0.1s ease;
-        }
+body{
+    overflow:hidden;
+    background:#79b8ff;
+    font-family:'Press Start 2P', cursive;
+}
 
-        .btn:hover {
-            background-color: #ff6b81;
-        }
+/* Animated pixel background */
 
-        .btn:active {
-            box-shadow: 0 2px #0f3460;
-            transform: translateY(4px);
-        }
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(#6ac4ff 70%, #45b049 70%);
+    z-index:-3;
+}
 
-        /* HUD (Heads-Up Display) */
-        #hud {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            z-index: 5;
-            pointer-events: none;
-        }
+body::after{
+    content:"";
+    position:absolute;
+    width:300%;
+    height:100%;
+    background-image:
+    radial-gradient(circle,#ffffff 25%,transparent 26%);
+    background-size:120px 60px;
+    opacity:.35;
+    animation:clouds 40s linear infinite;
+    z-index:-2;
+}
 
-        /* The Target (Nitai) */
-        #nitai {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-color: #f5a623;
-            border: 4px solid #fff;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-            color: #000;
-            cursor: pointer;
-            transition: transform 0.1s ease;
-        }
+@keyframes clouds{
+    from{transform:translateX(0);}
+    to{transform:translateX(-900px);}
+}
 
-        #nitai:active {
-            transform: scale(0.9);
-            background-color: #ff0000;
-        }
+/* Title */
 
-        /* Simple effect when hit */
-        .hit-effect {
-            animation: shake 0.2s ease-in-out;
-        }
+.title{
+    width:100%;
+    text-align:center;
+    margin-top:50px;
+    color:white;
+    font-size:55px;
+    text-shadow:
+    5px 5px #000,
+    10px 10px #4a4a4a;
+    animation:bounce 2s infinite;
+}
 
-        @keyframes shake {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-5px, 5px); }
-            50% { transform: translate(5px, -5px); }
-            75% { transform: translate(-5px, -5px); }
-            100% { transform: translate(0, 0); }
-        }
-    </style>
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* Menu */
+
+.menu{
+    position:absolute;
+    left:50%;
+    top:55%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* Pixel Button */
+
+.pixelButton{
+
+    width:320px;
+    padding:22px;
+
+    background:#ffde59;
+
+    border:none;
+
+    color:#222;
+
+    font-size:18px;
+
+    font-family:'Press Start 2P';
+
+    cursor:pointer;
+
+    box-shadow:
+    0 8px #d39f00,
+    8px 0 #d39f00,
+    -8px 0 #fff5a4,
+    0 -8px #fff5a4;
+
+    transition:.12s;
+}
+
+.pixelButton:hover{
+
+    transform:translateY(-5px) scale(1.05);
+
+    background:#ffd633;
+
+}
+
+.pixelButton:active{
+
+    transform:translateY(6px);
+
+    box-shadow:
+    0 2px #d39f00;
+
+}
+
+/* Footer */
+
+.footer{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:12px;
+    text-shadow:3px 3px black;
+}
+
+</style>
+
 </head>
 <body>
 
-    <div id="game-container">
-        <div id="hud">
-            <div>ניקוד: <span id="score">0</span></div>
-            <div>זמן: <span id="timer">30</span></div>
-        </div>
+<div class="title">
+הרבץ לנתאי
+</div>
 
-        <div id="menu-screen" class="screen">
-            <h1>הרבץ לנתאי</h1>
-            <button class="btn" onclick="startGame()">התחל משחק</button>
-        </div>
+<div class="menu">
 
-        <div id="game-over-screen" class="screen hidden">
-            <h1>המשחק נגמר!</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">הניקוד הסופי שלך: <span id="final-score">0</span></p>
-            <button class="btn" onclick="restartGame()">שחק שוב</button>
-        </div>
+<button class="pixelButton" onclick="playGame()">
+🎮 שחק!
+</button>
 
-        <div id="nitai" class="hidden" onclick="hitNitai()">נתאי</div>
-    </div>
+<button class="pixelButton">
+⚙ הגדרות
+</button>
 
-    <script>
-        let score = 0;
-        let timeLeft = 30;
-        let gameInterval;
-        let countdownInterval;
-        const gameContainer = document.getElementById('game-container');
-        const nitai = document.getElementById('nitai');
-        const scoreDisplay = document.getElementById('score');
-        const timerDisplay = document.getElementById('timer');
-        const menuScreen = document.getElementById('menu-screen');
-        const gameOverScreen = document.getElementById('game-over-screen');
-        const finalScoreDisplay = document.getElementById('final-score');
+<button class="pixelButton">
+📜 קרדיטים
+</button>
 
-        // Function to move Nitai to a random position
-        function moveNitai() {
-            const maxX = gameContainer.clientWidth - nitai.clientWidth - 10;
-            const maxY = gameContainer.clientHeight - nitai.clientHeight - 60; // leave room for HUD
+</div>
 
-            const randomX = Math.floor(Math.random() * maxX);
-            // Ensure it doesn't spawn exactly under the HUD text easily
-            const randomY = Math.floor(Math.random() * maxY) + 50; 
+<div class="footer">
+Made By Yhonatan Akiva
+</div>
 
-            nitai.style.left = randomX + 'px';
-            nitai.style.top = randomY + 'px';
-        }
+<script>
 
-        // Action when player clicks Nitai
-        function hitNitai() {
-            score++;
-            scoreDisplay.textContent = score;
-            
-            // Add a little hit visual effect to container
-            gameContainer.classList.add('hit-effect');
-            setTimeout(() => gameContainer.classList.remove('hit-effect'), 200);
-            
-            // Instantly jump to a new spot when clicked
-            moveNitai();
-        }
+function playGame(){
 
-        // Start the game loop
-        function startGame() {
-            score = 0;
-            timeLeft = 30;
-            scoreDisplay.textContent = score;
-            timerDisplay.textContent = timeLeft;
+alert("המשחק עדיין בבנייה!");
 
-            menuScreen.classList.add('hidden');
-            gameOverScreen.classList.add('hidden');
-            nitai.classList.remove('hidden');
+}
 
-            moveNitai();
+</script>
 
-            // Move Nitai automatically every 1 second if not clicked
-            gameInterval = setInterval(moveNitai, 1000);
-
-            // Countdown timer
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                timerDisplay.textContent = timeLeft;
-
-                if (timeLeft <= 0) {
-                    endGame();
-                }
-            }, 1000);
-        }
-
-        // End Game logic
-        function endGame() {
-            clearInterval(gameInterval);
-            clearInterval(countdownInterval);
-            
-            nitai.classList.add('hidden');
-            finalScoreDisplay.textContent = score;
-            gameOverScreen.classList.remove('hidden');
-        }
-
-        // Restart loop
-        function restartGame() {
-            gameOverScreen.classList.add('hidden');
-            startGame();
-        }
-    </script>
 </body>
 </html>
