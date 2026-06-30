@@ -6,182 +6,124 @@
 
 <title>הרבץ לנתאי</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    overflow:hidden;
-    background:#79b8ff;
-    font-family:'Press Start 2P', cursive;
-}
-
-/* Animated pixel background */
-
-body::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:
-    linear-gradient(#6ac4ff 70%, #45b049 70%);
-    z-index:-3;
-}
-
-body::after{
-    content:"";
-    position:absolute;
-    width:300%;
-    height:100%;
-    background-image:
-    radial-gradient(circle,#ffffff 25%,transparent 26%);
-    background-size:120px 60px;
-    opacity:.35;
-    animation:clouds 40s linear infinite;
-    z-index:-2;
-}
-
-@keyframes clouds{
-    from{transform:translateX(0);}
-    to{transform:translateX(-900px);}
-}
-
-/* Title */
-
-.title{
-    width:100%;
-    text-align:center;
-    margin-top:50px;
-    color:white;
-    font-size:55px;
-    text-shadow:
-    5px 5px #000,
-    10px 10px #4a4a4a;
-    animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-8px);
-    }
-}
-
-/* Menu */
-
-.menu{
-    position:absolute;
-    left:50%;
-    top:55%;
-    transform:translate(-50%,-50%);
-    display:flex;
-    flex-direction:column;
-    gap:25px;
-}
-
-/* Pixel Button */
-
-.pixelButton{
-
-    width:320px;
-    padding:22px;
-
-    background:#ffde59;
-
-    border:none;
-
-    color:#222;
-
-    font-size:18px;
-
-    font-family:'Press Start 2P';
-
-    cursor:pointer;
-
-    box-shadow:
-    0 8px #d39f00,
-    8px 0 #d39f00,
-    -8px 0 #fff5a4,
-    0 -8px #fff5a4;
-
-    transition:.12s;
-}
-
-.pixelButton:hover{
-
-    transform:translateY(-5px) scale(1.05);
-
-    background:#ffd633;
-
-}
-
-.pixelButton:active{
-
-    transform:translateY(6px);
-
-    box-shadow:
-    0 2px #d39f00;
-
-}
-
-/* Footer */
-
-.footer{
-    position:absolute;
-    bottom:20px;
-    width:100%;
-    text-align:center;
-    color:white;
-    font-size:12px;
-    text-shadow:3px 3px black;
-}
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="title">
-הרבץ לנתאי
-</div>
+<!-- ================= SKY ================= -->
 
-<div class="menu">
+<div id="sky">
 
-<button class="pixelButton" onclick="playGame()">
-🎮 שחק!
-</button>
-
-<button class="pixelButton">
-⚙ הגדרות
-</button>
-
-<button class="pixelButton">
-📜 קרדיטים
-</button>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
 
 </div>
 
-<div class="footer">
-Made By Yhonatan Akiva
+<!-- ============== SUN ================= -->
+
+<div id="sun"></div>
+
+<!-- ============== BACKGROUND ============== -->
+
+<div id="background">
+
+    <!-- Mountains -->
+    <div class="mountain mountain1"></div>
+    <div class="mountain mountain2"></div>
+    <div class="mountain mountain3"></div>
+
+    <!-- Trees -->
+    <div class="tree tree1"></div>
+    <div class="tree tree2"></div>
+    <div class="tree tree3"></div>
+    <div class="tree tree4"></div>
+    <div class="tree tree5"></div>
+
+    <!-- House -->
+    <div id="house">
+
+        <div class="roof"></div>
+
+        <div class="houseBody">
+
+            <div class="door"></div>
+
+            <div class="window left"></div>
+            <div class="window right"></div>
+
+        </div>
+
+    </div>
+
+    <!-- River -->
+    <div id="river"></div>
+
+    <!-- Grass -->
+
+    <div id="grass"></div>
+
+    <!-- Flowers -->
+
+    <div id="flowers"></div>
+
 </div>
 
-<script>
+<!-- ================= MENU ================= -->
 
-function playGame(){
+<div id="menu">
 
-alert("המשחק עדיין בבנייה!");
+    <h1 id="title">
+        הרבץ לנתאי
+    </h1>
 
-}
+    <p id="subtitle">
+        Made By Yhonatan Akiva
+    </p>
 
-</script>
+    <button class="menuButton" id="playButton">
+        ▶ שחק
+    </button>
+
+    <button class="menuButton">
+        ⚙ הגדרות
+    </button>
+
+    <button class="menuButton">
+        🏆 קרדיטים
+    </button>
+
+</div>
+
+<!-- ================= DECORATION ================= -->
+
+<div id="particles"></div>
+
+<div id="birds">
+    <div class="bird"></div>
+    <div class="bird"></div>
+    <div class="bird"></div>
+</div>
+
+<div id="butterflies"></div>
+
+<div id="fog"></div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+© 2026 Harbetz Lenatai
+
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
